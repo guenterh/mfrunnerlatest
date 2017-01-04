@@ -1,5 +1,5 @@
 
-Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten metafacture-core maven version?
+1) Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten metafacture-core maven version?
 
 1) clone metafacture-runner
 2) mvn package
@@ -18,7 +18,7 @@ Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten 
 
 
 
-Wie kann ich mir die dependencies meines Projekts erstellen lassen?
+2) Wie kann ich mir die dependencies meines Projekts erstellen lassen?
 Das habe ich von stackoverflow (weiss aber nicht mehr wo)
 erzeuge maven dependencies
 mvn clean dependency:copy-dependencies
@@ -32,3 +32,8 @@ mvn clean dependency:copy-dependencies
 					</outputDirectory>
 				</configuration>
 			</plugin>
+
+
+3) lade das repository nach Github
+git remote add guenterh git@github.com:guenterh/mf-runner-35.git
+git push -u guenterh master
