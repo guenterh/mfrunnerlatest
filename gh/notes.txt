@@ -1,0 +1,34 @@
+
+Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten metafacture-core maven version?
+
+1) clone metafacture-runner
+2) mvn package
+3) entpacke den Inhalt des erstellten artefakts in target in das APP_DIR
+4) passe die pom.xml Datei an
+--> stelle das target JDK auf gewünschte Version (bei mir von 1.6 nach 1.8)
+--> definiere die gewünschte Version von metfacture-core
+5) lasse ini metafacture-runner laufen:
+ mvn clean dependency:copy-dependencies
+ (man brauchte scheinbar nicht das Plugin)
+
+ 6) kopiere die erstellen dependencies Dateien in das lib Verzeichnis
+
+ --> dann hat es funktioniert
+ noch machen: vergleiche mal die lib Dateien aus dem core (z.B. 4.0) mit den hier erstellten Abhängigkeiten
+
+
+
+Wie kann ich mir die dependencies meines Projekts erstellen lassen?
+Das habe ich von stackoverflow (weiss aber nicht mehr wo)
+erzeuge maven dependencies
+mvn clean dependency:copy-dependencies
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<outputDirectory>
+						${project.build.directory}
+					</outputDirectory>
+				</configuration>
+			</plugin>
