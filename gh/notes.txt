@@ -1,5 +1,5 @@
 
-1) Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten metafacture-core maven version?
+A) Wie bekomme ich ein lauffähiges metafacture-runner reposiktory mit der letzten metafacture-core maven version?
 
 1) clone metafacture-runner
 2) mvn package
@@ -18,7 +18,7 @@
 
 
 
-2) Wie kann ich mir die dependencies meines Projekts erstellen lassen?
+B) Wie kann ich mir die dependencies meines Projekts erstellen lassen?
 Das habe ich von stackoverflow (weiss aber nicht mehr wo)
 erzeuge maven dependencies
 mvn clean dependency:copy-dependencies
@@ -37,3 +37,50 @@ mvn clean dependency:copy-dependencies
 3) lade das repository nach Github
 git remote add guenterh git@github.com:guenterh/mf-runner-35.git
 git push -u guenterh master
+
+
+
+C) Anleitung Sebastian
+ Lieber Günter
+
+ Hier noch die nicht mehr ganz aktuelle Anleitung zum Aufsetzen von
+ Metafacture:
+
+ 1. Benötigte Repositorien klonen:
+ a. git clone https://github.com/culturegraph/metafacture-core.git
+ b. git clone https://github.com/culturegraph/metafacture-runner.git
+ c. git clone
+ https://github.com/linked-swissbib/swissbib-metafacture-commands.git
+ d. git clone https://github.com/linked-swissbib/mfWorkflows.git
+ 2. In den Dependencies der POM von metafacture-core die veraltete
+ Jackson-core Version durch eine aktuelle ersetzen.
+ 3. metafacture-core kompilieren: mvn clean install
+ 4. Die erstellte jar-Datei in das lokale Maven-Repository installieren:
+ mvn install:install-file -Dfile=<path-to-file>
+ -DpomFile=<path-to-pomfile> (gemäss
+ https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html)
+ 5. In der POM von metafacture-runner die
+ metafacture-core-dependency-Koordination durch diejenigen der in Schritt
+ 4 erstellten Installation ersetzen (normalerweise nur Anpassung der
+ Versionsnummer)
+ 6. metafacture-runner kompilieren: mvn clean install
+ 7. Nach erfolgreicher Kompilierung befindet sich im target-Ordner ein
+ zip-komprimiertes-Archiv, welches eine voll lauffähige
+ metafacture-runner-Umgebung enthält. Dieses entzippen und in das
+ gewünschte Verzeichnis verschieben
+ 8. In diesem Verzeichnis den Pfad src/main/resources/ erstellen: mkdir
+ -p src/main/resources
+ 9. Transformationsdefinitionen aus dem mfWorkflows-Repository
+ (src/main/resources/transformations) in das neu erstellte Verzeichnis
+ kopieren
+ 10. In das swissbib-metafacture-commands-Repository gehen und auf branch
+ elasticsearch-2.0 wechseln: git checkout elasticsearch-2.0
+ 11. swissbib-metafacture-commands kompilieren: mvn clean install
+ assembly:assembly -Dmaven.test.skip=true
+ 12. Die im target-Verzeichnis erstellte Datei
+ swissbibMF-plugins-0.0.5-SNAPSHOT-jar-with-dependencies.jar in den
+ plugins-Ordner des in Schritt 7 entzippten Verzeichnisses kopieren
+ 13. flux starten...
+
+ Beste Grüsse
+ Sebastian
