@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamorph xmlns="http://www.culturegraph.org/metamorph"
+           version="1" entityMarker=".">
+    <meta>
+        <name>only testmorph</name>
+    </meta>
+
+    <rules>
+
+        <data source="021A.a" name="Title">
+            <regexp match="^(The) (.*)$" format="${2}, ${1} " />
+        </data>
+
+
+    </rules>
+</metamorph>

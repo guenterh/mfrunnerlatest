@@ -107,6 +107,9 @@ while read line ; do
 	line=$( echo "$line" | sed $extended_regexp "$remove_quotes" )
 	java_opts_array+=("$line")
 done < <( echo "$java_opts" | grep -Eo "$option_pattern" )
-
+#echo ${java_opts_array[@]}
 # Start flux:
-"$FLUX_JAVA_BIN" "${java_opts_array[@]}" -jar "$jar_file" "$@"
+"$FLUX_JAVA_BIN" "${java_opts_array[@]}" -jar "$jar_file" "$@" 
+
+#"$FLUX_JAVA_BIN"   -jar "$jar_file" "$@"
+
