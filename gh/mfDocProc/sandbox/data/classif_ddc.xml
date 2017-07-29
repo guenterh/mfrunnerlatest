@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" >
+    <record type="Bibliographic">
+        <leader>     cas a22     1  4500</leader>
+        <controlfield tag="001">056314213</controlfield>
+        <controlfield tag="003">CHVBK</controlfield>
+        <controlfield tag="005">20140611230039.0</controlfield>
+        <controlfield tag="007">ta</controlfield>
+        <controlfield tag="008">950511d19851985sz  x p       0   b0ger d</controlfield>
+
+
+        <datafield tag="082" ind1=" " ind2=" ">
+            <subfield code="a">first a no indicator</subfield>
+            <subfield code="b">T1</subfield>
+            <subfield code="c">T2</subfield>
+            <subfield code="d">T3</subfield>
+        </datafield>
+
+        <datafield tag="082" ind1="1" ind2=" ">
+            <subfield code="a">second a with indicator 1</subfield>
+            <subfield code="b">T1</subfield>
+            <subfield code="c">T2</subfield>
+            <subfield code="d">T3</subfield>
+        </datafield>
+
+        <datafield tag="082" ind1=" " ind2="2">
+            <subfield code="a">third a with indicator 2</subfield>
+            <subfield code="b">T1</subfield>
+        </datafield>
+
+        <!-- shouldn't be taken -->
+        <datafield tag="082" ind1="1" ind2="2">
+            <subfield code="b">not a</subfield>
+            <subfield code="c">T1</subfield>
+        </datafield>
+
+        <datafield tag="909" ind1=" " ind2="7">
+            <subfield code="2">sb_2001</subfield>
+            <subfield code="c">subfield c von 909 ind2 7</subfield>
+            <subfield code="c">2. subfieldd c darf nicht genommen werden</subfield>
+        </datafield>
+
+
+        <datafield tag="909" ind1=" " ind2="7">
+            <subfield code="2">sb_2001</subfield>
+            <subfield code="c">2. element subfield c von 909 ind2 7</subfield>
+        </datafield>
+
+        <datafield tag="909" ind1=" " ind2="7">
+            <subfield code="2">ehelv</subfield>
+            <subfield code="d">ehelv Element d 909 code 2 ehelv</subfield>
+        </datafield>
+
+
+    </record>
+</collection>

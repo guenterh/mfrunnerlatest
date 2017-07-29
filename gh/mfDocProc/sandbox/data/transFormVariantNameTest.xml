@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" >
+    <record type="Bibliographic">
+        <leader>     cas a22     1  4500</leader>
+        <controlfield tag="001">056314213</controlfield>
+        <controlfield tag="003">CHVBK</controlfield>
+        <controlfield tag="005">20140611230039.0</controlfield>
+        <controlfield tag="007">ta</controlfield>
+        <controlfield tag="008">950511d19851985sz  x p       0   b0ger d</controlfield>
+
+        <datafield tag="050" ind1=" " ind2=" ">
+            <subfield code="a">1111111</subfield>
+        </datafield>
+
+        <datafield tag="110" ind1=" " ind2=" ">
+            <subfield code="a">variant surname Pers1</subfield>
+            <subfield code="d">variant forename Pers1</subfield>
+        </datafield>
+
+        <datafield tag="110" ind1=" " ind2=" ">
+            <subfield code="a">variant surname Pers2</subfield>
+            <subfield code="d">variant forename Pers2</subfield>
+        </datafield>
+
+        <datafield tag="110" ind1=" " ind2=" ">
+            <subfield code="a">variant surname Pers3</subfield>
+            <subfield code="d">variant forename Pers3</subfield>
+        </datafield>
+
+    </record>
+</collection>

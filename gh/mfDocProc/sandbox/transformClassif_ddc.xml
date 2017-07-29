@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamorph xmlns="http://www.culturegraph.org/metamorph" version="1">
+
+    <rules>
+
+        <!--
+        <xsl:for-each select="$fragment/datafield[@tag='082']/subfield[@code='a']">
+            <field name="classif_ddc">
+                <xsl:value-of select="." />
+            </field>
+        </xsl:for-each>
+
+
+
+        <xsl:for-each select="$fragment/datafield[@tag='909'][@ind2='7'][matches(descendant::subfield[@code='2'][1], 'sb_2001', 'i')]/subfield[@code='c']">)">
+            <field name="classif_ddc">
+                <xsl:value-of select="." />
+            </field>
+        </xsl:for-each>
+
+        -->
+
+        <entity name="classif_ddc[]" flushWith="record">
+            <combine name="" value="${082a}"  flushWith="082??.a"  reset="true">
+                <data source="082??.a" name="082a" />
+
+            </combine>
+
+            <if>
+
+                    <data source="909?7.2">
+                        <!-- no occurence because we need all datafields -->
+                        <occurrence only="1"/>
+                        <case to="lower"/>
+                        <regexp match="sb_2001|ehelv"/>
+                    </data>
+
+
+            </if>
+            <combine name="" value="${909c}"  flushWith="909?7.c" reset="true" sameEntity="true">
+                <data source="909?7.c" name="909c" />
+
+            </combine>
+
+            <combine name="" value="${909d}"  flushWith="909?7.d"  sameEntity="true" reset="true">
+                <data source="909?7.d" name="909d" />
+
+            </combine>
+
+
+
+        </entity>
+
+
+
+
+
+<!--
+        <xsl:for-each select="$fragment/datafield[@tag='909'][@ind2='7'][matches(descendant::subfield[@code='2'][1], 'ehelv', 'i')]/subfield[@code='d']">)">
+            <field name="classif_ddc">
+                <xsl:value-of select="." />
+            </field>
+        </xsl:for-each>
+
+
+-->
+
+
+
+    </rules>
+
+</metamorph>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamorph xmlns="http://www.culturegraph.org/metamorph" version="1">
+
+
+	<macros>
+		<macro name="test">
+				<choose name="$[out]" flushWith="956*.a" >
+						<combine name="" value="${wert1}##${wert2}" flushWith="956*.a">
+							<if>
+								<data source="956*.B"  name="wert1">
+									<whitelist>
+										<entry name="IDSBB"/>
+									</whitelist>
+
+								</data>
+							</if>
+							<data source="956*.B"  name="wert1">
+								<whitelist>
+									<entry name="IDSBB"/>
+								</whitelist>
+								<lookup in="alephNetworks"/>
+
+							</data>
+							<data source="956*.a"  name="wert2"/>
+						</combine>
+						<combine name="" value="${wert1}##${wert2}" flushWith="956*.a">
+
+							<if>
+								<data source="956*.B"  name="wert1">
+									<whitelist>
+										<entry name="RERO"/>
+									</whitelist>
+
+								</data>
+							</if>
+							<data source="956*.B"  name="wert1">
+								<lookup in="virtuaNetworks"/>
+
+							</data>
+							<data source="956*.a"  name="wert2"/>
+						</combine>
+
+				</choose>
+
+
+
+		</macro>
+
+	</macros>
+
+
+	<rules>
+
+
+
+
+		<!--<call-macro name="test"  out="@myOut"/> -->
+			<combine name="" value="${wert1}##${wert2}" flushWith="956*.B" >
+				<if>
+					<data source="956*.B"  name="wert1">
+						<whitelist>
+							<entry name="IDSBB"/>
+						</whitelist>
+
+					</data>
+				</if>
+				<data source="956*.B"  name="wert1">
+					<whitelist>
+						<entry name="IDSBB"/>
+					</whitelist>
+					<lookup in="alephNetworks"/>
+
+				</data>
+				<data source="956*.a"  name="wert2"/>
+			</combine>
+			<combine name="" value="${wert1}##${wert2}" flushWith="956*.B" >
+
+				<if>
+					<data source="956*.B"  name="wert1">
+						<whitelist>
+							<entry name="RERO"/>
+						</whitelist>
+
+					</data>
+				</if>
+				<data source="956*.B"  name="wert1">
+					<whitelist>
+						<entry name="RERO"/>
+					</whitelist>
+					<lookup in="virtuaNetworks"/>
+
+				</data>
+				<data source="956*.a"  name="wert2"/>
+			</combine>
+
+
+
+
+
+
+
+
+
+	</rules>
+
+	<maps>
+		<filemap name="alephNetworks" files="./src/main/resources/transformation/searchDocs/maps/AlephNetworks.txt" separator="\t"/>
+		<filemap name="backlinks" files="./src/main/resources/transformation/searchDocs/maps/Backlinks.txt" separator="\t"/>
+		<filemap name="virtuaNetworks" files="./src/main/resources/transformation/searchDocs/maps/VirtuaNetworks.txt" separator="\t"/>
+	</maps>
+
+
+</metamorph>

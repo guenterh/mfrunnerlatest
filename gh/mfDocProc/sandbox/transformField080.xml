@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamorph xmlns="http://www.culturegraph.org/metamorph" version="1">
+
+	<rules>
+
+		<!-- UDC fields, standard and non-standard (11.10.2012 / osc) -->
+
+		<!--Recursion at the beginning perhaps it might make sense to refactor all such recursions just at the beginning or into a seperate file-->
+		<!-- quetsions
+			- why indicators with ?? and not '*' - is there a differne in behaviour?
+		-->
+		<concat name="@080" delimiter="" flushWith="080??" reset="true" >
+			<data source="080??.a" />
+			<data source="080??.x" />
+		</concat>
+
+		<!-- doesn't work I get ony the first and datasource doesn't provide flush-->
+		<!--
+		<data source="690?7.2" name="@6907.2" />
+		<data source="909?7.2" name="@9097.2"/>
+		-->
+
+
+		<entity name="classif_udc[]" flushWith="record">
+			<combine name="" value="${080}" >
+				<data source="@080" name="080"/>
+			</combine>
+
+
+			<!-- this combination of flushWith and reset is important for this use case, otherwise we can't collect multiple datafield tags
+			 valid against the rule
+
+			 todo: give explanation for this behaviour!
+			 -->
+			<combine name="" value="${690u}"  flushWith="690??" reset="true">
+			<!-- template
+        <xsl:for-each select="$fragment/datafield[@tag='690'][@ind2='7'][matches(descendant::subfield[@code='2'][1],'^snl local', 'i')]/subfield[@code='u']">
+            <field name="classif_udc">
+                <xsl:value-of select="." />
+            </field>
+        </xsl:for-each>
+			-->
+
+				<if>
+					<data source="690?7.2">
+						<!-- no occurence because we need all datafields -->
+						<!--<occurrence only="1"/>-->
+						<case to="lower"/>
+						<regexp match="^snl local"/>
+					</data>
+
+				</if>
+				<data source="690?7.u" name="690u" />
+
+			</combine>
+			<combine name="" value="${909c}" flushWith="909??" reset="true">
+				<!-- template
+				<xsl:for-each select="$fragment/datafield[@tag='909'][@ind2='7'][matches(descendant::subfield[@code='2'][1], 'sb_xxxx', 'i')]/subfield[@code='c']">
+					<field name="classif_udc">
+						<xsl:value-of select="." />
+					</field>
+				</xsl:for-each>
+				-->
+
+				<if>
+					<data source="909?7.2">
+
+						 <!-- <occurrence only="1"/> -->
+						<case to="lower"/>
+						<regexp  match="sb_xxxx" />
+					</data>
+				</if>
+				<data source="909?7.c" name="909c"/>
+			</combine>
+		</entity>
+
+
+	</rules>
+
+</metamorph>
